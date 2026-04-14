@@ -6,10 +6,10 @@ import '../helper/font_weight_helper.dart';
 
 class TextStyles {
 
-  static TextStyle font14LightGraySemiBold = TextStyle(
+  static TextStyle font14BlueGerySemiBold = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.semiBold,
-    color: AppColors.lightGray,
+    color: AppColors.blueGery,
   );
 
   static TextStyle font16DarkBlueSemiBold = TextStyle(
@@ -18,10 +18,10 @@ class TextStyles {
     color: AppColors.darkBlue,
   );
 
-  static TextStyle font14LightGrayRegular = TextStyle(
+  static TextStyle font14BlueGeryRegular = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.regular,
-    color: AppColors.lightGray,
+    color: AppColors.blueGery,
   );
 
   static TextStyle font18WhiteSemiBold = TextStyle(

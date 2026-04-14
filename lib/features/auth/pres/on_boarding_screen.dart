@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:sas_go/core/helper/spacing.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:sas_go/core/constants/app_colors.dart';
+import 'package:sas_go/core/constants/app_assets.dart';
 import 'package:sas_go/core/constants/app_strings.dart';
 import 'package:sas_go/core/theme/text_styles.dart';
-
-import '../../../core/constants/app_assets.dart';
-import '../../../shared/app_button.dart';
+import 'package:sas_go/shared/app_button.dart';
+import '../widgets/onboarding/onboarding_pageItem.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -17,44 +13,66 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
-  final PageController _controller = PageController();
+  late final PageController _pageController;
+  int _currentIndex = 0;
 
-  int currentIndex = 0;
-
-  final List<Map<String, String>> pages = [
-    {
-      "image": AppAssets.onBoardingOne,
-      "title": AppStrings.onBoardingOneTitle,
-      "description": AppStrings.onBoardingOneDes,
-    },
-    {
-      "image": AppAssets.onBoardingTwo,
-      "title": AppStrings.onBoardingTwoTitle,
-      "description": AppStrings.onBoardingTwoDes,
-    },
-    {
-      "image": AppAssets.onBoardingThree,
-      "title": AppStrings.onBoardingThreeTitle,
-      "description": AppStrings.onBoardingThreeDes,
-    },
+  final List<OnBoardingModel> _pages = const [
+    OnBoardingModel(
+      image: AppAssets.onBoardingOne,
+      title: AppStrings.onBoardingOneTitle,
+      description: AppStrings.onBoardingOneDes,
+    ),
+    OnBoardingModel(
+      image: AppAssets.onBoardingTwo,
+      title: AppStrings.onBoardingTwoTitle,
+      description: AppStrings.onBoardingTwoDes,
+    ),
+    OnBoardingModel(
+      image: AppAssets.onBoardingThree,
+      title: AppStrings.onBoardingThreeTitle,
+      description: AppStrings.onBoardingThreeDes,
+    ),
   ];
 
-  void nextPage() {
-    if (currentIndex < pages.length - 1) {
-      _controller.nextPage(
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.easeInOut,
-      );
-    } else {
-      // Navigate to login/home
+  @override
+  void initState() {
+    _pageController = PageController();
+    super.initState();
+  }
+
+  void _goToNextPage() {
+    final isLastPage = _currentIndex == _pages.length - 1;
+
+    if (isLastPage) {
+      _navigateToHome();
+      return;
     }
+
+    _pageController.nextPage(
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOutCubic,
+    );
+  }
+
+  void _skipOnBoarding() {
+    _navigateToHome();
+  }
+
+  void _navigateToHome() {
+    // TODO: navigate to login/home
+  }
+
+  void _onPageChanged(int index) {
+    setState(() => _currentIndex = index);
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _pageController.dispose();
     super.dispose();
   }
+
+  bool get isLastPage => _currentIndex == _pages.length - 1;
 
   @override
   Widget build(BuildContext context) {
@@ -64,85 +82,73 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           child: Column(
             children: [
+              _buildSkipButton(),
 
-              /// Skip button
-              Align(
-                alignment: Alignment.centerLeft,
-                child: TextButton(
-                  onPressed: () {
-                    // Navigate to login/home
-                  },
-                  child: Text(
-                    AppStrings.skip,
-                    style: TextStyles.font14LightGraySemiBold,
-                  ),
-                ),
-              ),
-
-              /// on boarding pages
               Expanded(
-                child: PageView.builder(
-                  controller: _controller,
-                  itemCount: pages.length,
-                  onPageChanged: (index) {
-                    setState(() {
-                      currentIndex = index;
-                    });
-                  },
-                  itemBuilder: (context, index) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Expanded(child: Image.asset(pages[index]["image"]!)),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: PageView.builder(
+                        controller: _pageController,
+                        itemCount: _pages.length,
+                        reverse: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        onPageChanged: _onPageChanged,
+                        itemBuilder: (context, index) {
+                          final page = _pages[index];
 
-                        verticalSpace(15),
-
-                        Center(
-                          child: AnimatedSmoothIndicator(
-                            activeIndex: currentIndex,
-                            count: 3,
-                            effect: WormEffect(
-                              dotHeight: 5.h,
-                              dotWidth: 36.6.w,
-                              spacing: 4.w,
-                              activeDotColor: AppColors.darkBlue,
-                              dotColor: AppColors.lightGray,
-                            ),
-                          ),
-                        ),
-
-                        verticalSpace(34),
-
-                        Text(
-                          pages[index]["title"]!,
-                          style: TextStyles.font16DarkBlueSemiBold,
-                        ),
-
-                        verticalSpace(20),
-
-                        Text(
-                          pages[index]["description"]!,
-                          style: TextStyles.font14LightGrayRegular,
-                          textAlign: TextAlign.end,
-                        ),
-
-                        verticalSpace(56),
-                      ],
-                    );
-                  },
+                          return OnBoardingPageItem(
+                            image: page.image,
+                            title: page.title,
+                            description: page.description,
+                            currentIndex: _currentIndex,
+                            totalPages: _pages.length,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
 
-              /// Next button
               AppButton(
-                onTap: nextPage,
-                text: currentIndex == 2 ? AppStrings.getNow : AppStrings.next,
+                onTap: _goToNextPage,
+                text: isLastPage
+                    ? AppStrings.getNow
+                    : AppStrings.next,
               ),
-
             ],
           ),
         ),
       ),
     );
   }
+
+  Widget _buildSkipButton() {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: GestureDetector(
+        onTap: _skipOnBoarding,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Text(
+            AppStrings.skip,
+            style: TextStyles.font14BlueGerySemiBold,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class OnBoardingModel {
+  final String image;
+  final String title;
+  final String description;
+
+  const OnBoardingModel({
+    required this.image,
+    required this.title,
+    required this.description,
+  });
 }

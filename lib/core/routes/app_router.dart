@@ -1,8 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:sas_go/features/auth/pres/on_boarding_screen.dart';
-
 import 'app_routes.dart';
+
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -18,6 +17,7 @@ class AppRouter {
             body: Center(child: Text('No route defined for ${settings.name}')),
           ),
         );
+
     }
   }
 

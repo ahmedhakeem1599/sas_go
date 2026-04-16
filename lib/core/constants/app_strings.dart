@@ -21,4 +21,7 @@ class AppStrings {
   static const String loginNow = "قم بتسجيل الدخول";
   static const String areYouForgotPassword = "هل نسيت كلمة المرور؟";
   static const String dontHaveAccount = "ليس لديك حساب ؟";
+  static const String customer = "صاحب شحنة";
+  static const String trucker = "سائق / تاجر";
+  static const String choseAccountType = "اختار نوع حسابك";
 }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sas_go/shared/app_button.dart';
 import 'package:sas_go/shared/app_logo.dart';
-import '../../../core/constants/app_colors.dart';
-import '../../../core/constants/app_strings.dart';
-import '../../../core/helper/extentions.dart';
-import '../../../core/helper/spacing.dart';
-import '../../../core/routes/app_routes.dart';
-import '../../../core/theme/text_styles.dart';
+import '../../../../core/constants/app_colors.dart';
+import '../../../../core/constants/app_strings.dart';
+import '../../../../core/helper/extentions.dart';
+import '../../../../core/helper/spacing.dart';
+import '../../../../core/routes/app_routes.dart';
+import '../../../../core/theme/text_styles.dart';
 
 class LoginOrRegisterScreen extends StatefulWidget {
   const LoginOrRegisterScreen({super.key});
@@ -95,8 +95,9 @@ class _AuthSelectionScreenState extends State<LoginOrRegisterScreen> with Ticker
 
                     Text(
                       AppStrings.welcomeToSaS,
-                      style: TextStyles.font24WhiteBold,
+                      style: TextStyles.font24DarkBlueBold,
                     ),
+
                   ],
                 ),
               ),
@@ -120,14 +121,16 @@ class _AuthSelectionScreenState extends State<LoginOrRegisterScreen> with Ticker
 
                       AppButton(
                         text: AppStrings.createAccount,
-                        onTap: () {},
+                        onTap: () => context.pushNamed(AppRoutes.selectionTypeScreen),
                         borderWidth: 2,
                         color: Colors.transparent,
+                        borderColor: AppColors.darkBlue,
                         radius: 16,
                         textStyle: TextStyles.font20WhiteMedium.copyWith(
                           color: AppColors.darkBlue,
                         ),
                       ),
+
                     ],
                   ),
                 ),

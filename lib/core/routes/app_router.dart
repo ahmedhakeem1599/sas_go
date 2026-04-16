@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sas_go/features/auth/pres/on_boarding_screen.dart';
-import '../../features/auth/pres/login_or_register_screen.dart';
-import '../../features/auth/pres/login_screen.dart';
-import '../../features/auth/pres/register_screen.dart';
-import '../../features/auth/pres/selection_type_screen.dart';
+import 'package:sas_go/features/auth/pres/screens/on_boarding_screen.dart';
+import '../../features/auth/pres/screens/login_or_register_screen.dart';
+import '../../features/auth/pres/screens/login_screen.dart';
+import '../../features/auth/pres/screens/register_screen.dart';
+import '../../features/auth/pres/screens/selection_type_screen.dart';
 import 'app_routes.dart';
 
 

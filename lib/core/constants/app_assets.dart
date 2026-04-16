@@ -4,5 +4,7 @@ class AppAssets{
   static const onBoardingTwo = "assets/onboarding/onboarding_two.png";
   static const onBoardingThree = "assets/onboarding/onboarding_three.png";
   static const logo = "assets/logo.png";
+  static const person = "assets/person.png";
+  static const truck = "assets/truck.png";
 
 }

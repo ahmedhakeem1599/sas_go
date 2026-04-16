@@ -37,12 +37,10 @@ class AppTextFormField extends StatefulWidget {
   });
 
   @override
-  State<AppTextFormField> createState() =>
-      _AppTextFormFieldState();
+  State<AppTextFormField> createState() => _AppTextFormFieldState();
 }
 
-class _AppTextFormFieldState
-    extends State<AppTextFormField> {
+class _AppTextFormFieldState extends State<AppTextFormField> {
   late bool _isObscure;
 
   @override
@@ -59,50 +57,48 @@ class _AppTextFormFieldState
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      obscureText:
-      widget.isPassword ? _isObscure : false,
-      keyboardType: widget.keyboardType,
-      validator: widget.validator,
-      textAlign: widget.textAlign,
-      onChanged: widget.onChanged,
-      maxLines: widget.maxLines,
+    return Directionality(
       textDirection: TextDirection.rtl,
-      style: TextStyles.font14DarkMedium,
-      onTapOutside: (event) {
-        FocusScope.of(context).unfocus();
-      },
-      decoration: InputDecoration(
-        hintText: widget.isMandatory
-            ? '${widget.hintText} *'
-            : widget.hintText,
-        hintTextDirection: TextDirection.rtl,
-        hintStyle: TextStyles.font14LightGrayMedium,
+      child: TextFormField(
+        controller: widget.controller,
+        obscureText: widget.isPassword ? _isObscure : false,
+        keyboardType: widget.keyboardType,
+        validator: widget.validator,
+        textAlign: widget.textAlign,
+        onChanged: widget.onChanged,
+        maxLines: widget.maxLines,
+        textDirection: TextDirection.rtl,
+        style: TextStyles.font14DarkMedium,
+        onTapOutside: (event) {
+          FocusScope.of(context).unfocus();
+        },
+        decoration: InputDecoration(
+          hintText: widget.isMandatory
+              ? '${widget.hintText} *'
+              : widget.hintText,
+          hintTextDirection: TextDirection.rtl,
+          hintStyle: TextStyles.font14LightGrayMedium,
 
-        prefixIcon: widget.isPassword
-            ? IconButton(
-          onPressed:
-          _togglePasswordVisibility,
-          icon: Icon(
-            _isObscure
-                ? Icons.visibility_off
-                : Icons.visibility,
+          prefixIcon: widget.suffixIcon,
+          suffixIcon: widget.isPassword
+              ? IconButton(
+                  onPressed: _togglePasswordVisibility,
+                  icon: Icon(
+                    _isObscure ? Icons.visibility_off : Icons.visibility,
+                  ),
+                )
+              : widget.prefixIcon,
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 16.w,
+            vertical: 12.h,
           ),
-        ) : widget.prefixIcon,
 
-        suffixIcon: widget.suffixIcon,
-
-        contentPadding: EdgeInsets.symmetric(
-          horizontal: 16.w,
-          vertical: 12.h,
+          border: borderStyle(),
+          enabledBorder: borderStyle(),
+          focusedBorder: focusedBorderStyle(),
+          errorBorder: errorBorderStyle(),
+          focusedErrorBorder: errorBorderStyle(),
         ),
-
-        border: borderStyle(),
-        enabledBorder: borderStyle(),
-        focusedBorder: focusedBorderStyle(),
-        errorBorder: errorBorderStyle(),
-        focusedErrorBorder: errorBorderStyle(),
       ),
     );
   }
@@ -110,18 +106,14 @@ class _AppTextFormFieldState
   OutlineInputBorder borderStyle() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(8.r),
-      borderSide: BorderSide(
-        color: widget.borderColor ?? AppColors.lightGray,
-      ),
+      borderSide: BorderSide(color: widget.borderColor ?? AppColors.lightGray),
     );
   }
 
   OutlineInputBorder focusedBorderStyle() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(8.r),
-      borderSide: BorderSide(
-        color: widget.borderColor ?? AppColors.lightGray,
-      ),
+      borderSide: BorderSide(color: widget.borderColor ?? AppColors.lightGray),
     );
   }
 

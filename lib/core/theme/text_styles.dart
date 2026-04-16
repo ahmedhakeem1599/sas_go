@@ -17,10 +17,10 @@ class TextStyles {
     color: AppColors.darkBlue,
   );
 
-  static TextStyle font10DarkBlueBold = TextStyle(
-    fontSize: 10.sp,
+  static TextStyle font12lightBlueBold = TextStyle(
+    fontSize: 14.sp,
     fontWeight: FontWeightHelper.bold,
-    color: AppColors.darkBlue,
+    color: AppColors.lightBlue,
   );
 
   static TextStyle font14BlueGeryRegular = TextStyle(
@@ -29,13 +29,19 @@ class TextStyles {
     color: AppColors.lightGray,
   );
 
+  static TextStyle font14BlueGeryBold = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: AppColors.darkBlue,
+  );
+
   static TextStyle font18WhiteSemiBold = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.semiBold,
     color: AppColors.white,
   );
 
-  static TextStyle font24WhiteBold = TextStyle(
+  static TextStyle font24DarkBlueBold = TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeightHelper.bold,
     color: AppColors.darkBlue,

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sas_go/features/auth/pres/on_boarding_screen.dart';
+import '../../features/auth/pres/login_or_register_screen.dart';
+import '../../features/auth/pres/login_screen.dart';
+import '../../features/auth/pres/register_screen.dart';
+import '../../features/auth/pres/selection_type_screen.dart';
 import 'app_routes.dart';
 
 
@@ -10,6 +14,17 @@ class AppRouter {
       case AppRoutes.onboarding:
         return _buildRoute(const OnBoardingScreen());
 
+      case AppRoutes.loginOrRegisterScreen:
+        return _buildRoute(const LoginOrRegisterScreen());
+
+      case AppRoutes.loginScreen:
+        return _buildRoute(const LoginScreen());
+
+      case AppRoutes.selectionTypeScreen:
+        return _buildRoute(const SelectionTypeScreen());
+
+      case AppRoutes.registerScreen:
+        return _buildRoute(const RegisterScreen());
 
       default:
         return _buildRoute(

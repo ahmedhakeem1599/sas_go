@@ -13,5 +13,12 @@ class AppStrings {
   static const String onBoardingThreeTitle =  "عينك على شحنتك.. خطوة بخطوة";
   static const String onBoardingThreeDes = "تتبع مسار شحناتك لحظياً، واعرف حالتها الدقيقة وتاريخ الوصول المتوقع، بضغطة زر.";
 
-
+  static const String welcomeToSaS = "  SASGO  اهلا بيك في تطبيق";
+  static const String login = "تسجيل الدخول";
+  static const String createAccount = "إنشاء حساب جديد";
+  static const String email = "البريد الإلكتروني";
+  static const String password = "كلمة المرور";
+  static const String loginNow = "قم بتسجيل الدخول";
+  static const String areYouForgotPassword = "هل نسيت كلمة المرور؟";
+  static const String dontHaveAccount = "ليس لديك حساب ؟";
 }

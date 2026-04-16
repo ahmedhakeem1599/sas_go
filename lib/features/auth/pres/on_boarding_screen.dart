@@ -3,6 +3,8 @@ import 'package:sas_go/core/constants/app_assets.dart';
 import 'package:sas_go/core/constants/app_strings.dart';
 import 'package:sas_go/core/theme/text_styles.dart';
 import 'package:sas_go/shared/app_button.dart';
+import '../../../core/helper/extentions.dart';
+import '../../../core/routes/app_routes.dart';
 import '../widgets/onboarding/onboarding_pageItem.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -59,7 +61,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   }
 
   void _navigateToHome() {
-    // TODO: navigate to login/home
+    context.pushNamed(AppRoutes.loginOrRegisterScreen);
   }
 
   void _onPageChanged(int index) {

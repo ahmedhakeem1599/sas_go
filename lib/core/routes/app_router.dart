@@ -24,7 +24,8 @@ class AppRouter {
         return _buildRoute(const SelectionTypeScreen());
 
       case AppRoutes.registerScreen:
-        return _buildRoute(const RegisterScreen());
+        final rule = settings.arguments as int;
+        return _buildRoute(RegisterScreen(rule: rule));
 
       default:
         return _buildRoute(

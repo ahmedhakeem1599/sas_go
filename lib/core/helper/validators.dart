@@ -39,4 +39,35 @@ class AppValidators {
 
     return null;
   }
+
+  static String? validateSaudiPhone(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'رقم الجوال مطلوب';
+    }
+
+    final phone = value.trim();
+
+    // المستخدم يدخل بدون 0
+    final regex = RegExp(r'^5\d{8}$');
+
+    if (!regex.hasMatch(phone)) {
+      return 'رقم الجوال غير صالح';
+    }
+
+    return null;
+  }
+
+  static String? validateEnglishOnly(String? value) {
+    if (value == null || value.trim().isEmpty) {
+      return 'هذا الحقل مطلوب';
+    }
+
+    final regex = RegExp(r'^[a-zA-Z\s]+$');
+
+    if (!regex.hasMatch(value.trim())) {
+      return 'يجب إدخال حروف إنجليزية فقط';
+    }
+
+    return null;
+  }
 }

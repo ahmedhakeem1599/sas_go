@@ -39,7 +39,7 @@ class AppButton extends StatelessWidget {
           ),
         ),
         alignment: Alignment.center,
-        child: Text(text, style: textStyle ?? TextStyles.font18WhiteSemiBold),
+        child: Text(text, style: textStyle ?? TextStyles.font20WhiteMedium),
       ),
     );
   }

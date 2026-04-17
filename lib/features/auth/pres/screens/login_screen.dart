@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sas_go/shared/app_logo.dart';
@@ -7,6 +6,7 @@ import '../../../../core/helper/extentions.dart';
 import '../../../../core/helper/spacing.dart';
 import '../../../../core/routes/app_routes.dart';
 import '../../../../core/theme/text_styles.dart';
+import '../widgets/auth_footer_text.dart';
 import '../widgets/login_body.dart';
 
 
@@ -37,20 +37,12 @@ class LoginScreen extends StatelessWidget {
           
                 verticalSpace(32),
           
-                RichText(
-                  text: TextSpan(
-                    text: AppStrings.dontHaveAccount,
-                    style: TextStyles.font14BlueGerySemiBold,
-                    children: [
-                      TextSpan(
-                        text: AppStrings.createAccount,
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => context.pushNamed(AppRoutes.loginOrRegisterScreen),
-                        style: TextStyles.font12lightBlueBold
-                      ),
-                    ],
-                  ),
-                ),
+
+                AuthFooterText(
+                  textOne: AppStrings.dontHaveAccount,
+                  textTwo: AppStrings.createAccount,
+                  onTap: () => context.pushReplacementNamed(AppRoutes.selectionTypeScreen),
+                )
           
               ],
             ),

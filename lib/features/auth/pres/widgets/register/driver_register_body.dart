@@ -11,7 +11,6 @@ import '../../../../../shared/app_button.dart';
 import '../../../../../shared/app_text_form_field.dart';
 import '../../../../../shared/upload_card.dart';
 
-
 class DriverRegisterBody extends StatefulWidget {
   const DriverRegisterBody({super.key});
 
@@ -27,7 +26,8 @@ class _RegisterBodyState extends State<DriverRegisterBody> {
   final TextEditingController _phoneNumberController = TextEditingController();
   final TextEditingController _passController = TextEditingController();
   final TextEditingController _conformPassController = TextEditingController();
-  final TextEditingController _invitationCodeController = TextEditingController();
+  final TextEditingController _invitationCodeController =
+      TextEditingController();
 
   File? nationalIdImage;
   File? drivingLicenseImage;
@@ -50,7 +50,6 @@ class _RegisterBodyState extends State<DriverRegisterBody> {
     _invitationCodeController.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +105,7 @@ class _RegisterBodyState extends State<DriverRegisterBody> {
             child: Row(
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 16),
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 14),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(color: AppColors.lightGray, width: 1),
@@ -184,15 +183,18 @@ class _RegisterBodyState extends State<DriverRegisterBody> {
             title: AppStrings.nationalId,
             image: nationalIdImage,
             onTap: () async {
-
               final file = await ImagePickerHelper.pickImage(context);
-
               if (file != null) {
                 setState(() {
                   nationalIdImage = file;
                 });
               }
-              },
+            },
+            onRemove: () {
+              setState(() {
+                nationalIdImage = null;
+              });
+            },
           ),
           verticalSpace(8),
           UploadCard(
@@ -206,7 +208,11 @@ class _RegisterBodyState extends State<DriverRegisterBody> {
                   drivingLicenseImage = file;
                 });
               }
-
+            },
+            onRemove: () {
+              setState(() {
+                drivingLicenseImage = null;
+              });
             },
           ),
           verticalSpace(8),
@@ -214,7 +220,6 @@ class _RegisterBodyState extends State<DriverRegisterBody> {
             title: AppStrings.truckImage,
             image: truckImage,
             onTap: () async {
-
               final img = await ImagePickerHelper.pickImage(context);
 
               if (img != null) {
@@ -222,9 +227,13 @@ class _RegisterBodyState extends State<DriverRegisterBody> {
                   truckImage = img;
                 });
               }
-              },
+            },
+            onRemove: () {
+              setState(() {
+                truckImage = null;
+              });
+            },
           ),
-
 
           verticalSpace(32),
 
@@ -234,7 +243,6 @@ class _RegisterBodyState extends State<DriverRegisterBody> {
             onTap: _createAccount,
             radius: 16,
           ),
-
         ],
       ),
     );

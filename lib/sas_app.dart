@@ -14,7 +14,7 @@ class SasApp extends StatelessWidget {
       splitScreenMode: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        onGenerateRoute: AppRouter.generateRoute
+        onGenerateRoute: AppRouter.generateRoute,
       ),
     );
   }

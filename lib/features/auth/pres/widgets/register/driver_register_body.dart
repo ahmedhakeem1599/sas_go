@@ -29,20 +29,27 @@ class _RegisterBodyState extends State<DriverRegisterBody> {
   final TextEditingController _conformPassController = TextEditingController();
   final TextEditingController _invitationCodeController = TextEditingController();
 
+  File? nationalIdImage;
+  File? drivingLicenseImage;
+  File? truckImage;
+
   void _createAccount() {
     if (_formKey.currentState!.validate()) {
       // create account logic
     }
   }
 
-  File? nationalIdImage;
-  File? drivingLicenseImage;
-  File? truckImage;
-
-  bool isNationalLoading = false;
-  bool isLicenseLoading = false;
-  bool isTruckLoading = false;
-
+  @override
+  void dispose() {
+    _fullNameController.dispose();
+    _usedNameController.dispose();
+    _emailController.dispose();
+    _phoneNumberController.dispose();
+    _passController.dispose();
+    _conformPassController.dispose();
+    _invitationCodeController.dispose();
+    super.dispose();
+  }
 
 
   @override
@@ -176,9 +183,7 @@ class _RegisterBodyState extends State<DriverRegisterBody> {
           UploadCard(
             title: AppStrings.nationalId,
             image: nationalIdImage,
-            isLoading: isNationalLoading,
             onTap: () async {
-              setState(() => isNationalLoading = true);
 
               final file = await ImagePickerHelper.pickImage(context);
 
@@ -187,18 +192,13 @@ class _RegisterBodyState extends State<DriverRegisterBody> {
                   nationalIdImage = file;
                 });
               }
-
-              setState(() => isNationalLoading = false);
-            },
+              },
           ),
           verticalSpace(8),
           UploadCard(
             title: AppStrings.drivingLicense,
             image: drivingLicenseImage,
-            isLoading: isLicenseLoading,
             onTap: () async {
-              setState(() => isNationalLoading = true);
-
               final file = await ImagePickerHelper.pickImage(context);
 
               if (file != null) {
@@ -207,16 +207,13 @@ class _RegisterBodyState extends State<DriverRegisterBody> {
                 });
               }
 
-              setState(() => isNationalLoading = false);
             },
           ),
           verticalSpace(8),
           UploadCard(
             title: AppStrings.truckImage,
             image: truckImage,
-            isLoading: isTruckLoading,
             onTap: () async {
-              setState(() => isTruckLoading = true);
 
               final img = await ImagePickerHelper.pickImage(context);
 
@@ -225,9 +222,7 @@ class _RegisterBodyState extends State<DriverRegisterBody> {
                   truckImage = img;
                 });
               }
-
-              setState(() => isTruckLoading = false);
-            },
+              },
           ),
 
 

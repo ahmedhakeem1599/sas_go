@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sas_go/features/auth/pres/screens/entry.dart';
 import 'package:sas_go/features/auth/pres/screens/on_boarding_screen.dart';
 import '../../features/auth/pres/screens/login_or_register_screen.dart';
 import '../../features/auth/pres/screens/login_screen.dart';
@@ -10,6 +11,9 @@ import 'app_routes.dart';
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+
+      case AppRoutes.entry:
+        return _buildRoute(const EntryScreen());
 
       case AppRoutes.onboarding:
         return _buildRoute(const OnBoardingScreen());
